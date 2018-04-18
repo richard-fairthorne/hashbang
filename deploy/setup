@@ -20,13 +20,13 @@ case "$ID" in
     fi
 
     # Install docker
-    sudo apt-get update
-    sudo apt-get install -y \
+    apt-get update
+    apt-get install -y \
         apt-transport-https \
         ca-certificates \
         curl \
         software-properties-common
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
     # TODO: Verify the key
     # sudo apt-key fingerprint 0EBFCD88
@@ -40,13 +40,14 @@ case "$ID" in
     # binary-s390x
 
     # TODO: Move to production URL!
-    sudo add-apt-repository \
+    add-apt-repository \
        "deb [arch=${ARCH}] https://download.docker.com/linux/ubuntu \
        $(lsb_release -cs) \
        stable"
 
-    sudo apt-get update
-    sudo apt-get install -y docker-ce
+    apt-get update
+    apt-get install -y docker-ce
+    docker run -d --restart=unless-stopped 8443:443 hashbangmedia/hashbang:latest
     ;;
   * )
     echo "Unsupported OS: ${ID}"
