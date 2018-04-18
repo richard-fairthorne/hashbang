@@ -1,0 +1,52 @@
+#!/bin/bash
+
+
+# TODO: ASSERT UBUNTU 16.04
+# ==========================
+
+if [ -f /etc/os-release ]; then
+  # Set $ID and $VERSION_ID in script if it exists
+  . /etc/os-release
+fi
+
+case "$ID" in
+  ubuntu )
+    # set the architecture
+    ARCH=`uname -m`
+
+    # Normalize arch info
+    if [ "$ARCH" = "x86_64" ]; then
+      $ARCH='amd64'
+    fi
+
+    # Install docker
+    sudo apt-get update
+    sudo apt-get install \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+    # TODO: Verify the key
+    # sudo apt-key fingerprint 0EBFCD88
+
+    # TODO: SUPPORT MULTI-ARCH:
+    # amd64/
+    # binary-arm64
+    # binary-armhf
+    # binary-ppc64el
+    # binary-ppc64le
+    # binary-s390x
+
+    sudo add-apt-repository \
+       "deb [arch=${ARCH}] https://download.docker.com/linux/ubuntu \
+       $(lsb_release -cs) \
+       stable"
+    ;;
+  * )
+    echo "Unsupported OS: ${ID}"
+    echo "Supported OS: Ubuntu 16.04 on amd64/x86_64"
+    exit 1;
+    ;;
+esac
