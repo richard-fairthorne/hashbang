@@ -15,8 +15,8 @@ case "$ID" in
     ARCH=`uname -m`
 
     # Normalize arch info
-    if [ "$ARCH" = "x86_64" ]; then
-      $ARCH='amd64'
+    if [ "${ARCH}" = "x86_64" ]; then
+      ARCH="amd64"
     fi
 
     # Install docker
