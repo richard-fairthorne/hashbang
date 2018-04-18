@@ -39,6 +39,7 @@ case "$ID" in
     # binary-ppc64le
     # binary-s390x
 
+    # TODO: Move to production URL!
     sudo add-apt-repository \
        "deb [arch=${ARCH}] https://download.docker.com/linux/ubuntu \
        $(lsb_release -cs) \
