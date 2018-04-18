@@ -12,8 +12,8 @@ I like a good 1 liner.
 
 ## Usage
 
-Go to https://<yourserverip>:8443
+Go to https://yourserverip:8443
 
 ## The rest
 
-It should be self-explanatory from there.
+I considered making it more difficult, but, meh.
