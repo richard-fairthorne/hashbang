@@ -1,3 +1,6 @@
-FROM ubuntu:16.04
+#!hb-docker build -t hashbangmedia/hashbang
+# hb-docker: (https://github.com/richard-fairthorne/hb-helpers)
 
-CMD tail -f /var/log/messages
+FROM node:8
+
+CMD tail -f /var/log/syslog
